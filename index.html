@@ -4,7 +4,162 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Feliz Aniversário, Marília!</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Fundo degradê animado */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ff1493, #db7093);
+      background-size: 400% 400%;
+      animation: bgAnimation 15s ease infinite;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+
+    @keyframes bgAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Container do conteúdo */
+    #container {
+      max-width: 700px;
+      width: 100%;
+      background: rgba(255 255 255 / 0.15);
+      border-radius: 25px;
+      box-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
+      padding: 25px 30px;
+      user-select: none;
+    }
+
+    /* Mensagem inicial */
+    #mensagemInicial {
+      font-size: 28px;
+      line-height: 1.4;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    /* Botão começar */
+    #startButton {
+      font-size: 24px;
+      padding: 18px 50px;
+      border: none;
+      border-radius: 40px;
+      background: linear-gradient(45deg, #ff69b4, #ff1493);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 20, 147, 0.7);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #startButton:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(255, 20, 147, 0.9);
+    }
+
+    /* Instruções depois de iniciar */
+    #instrucoes {
+      font-size: 22px;
+      background: rgba(255 255 255 / 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+      display: none;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    /* Contador */
+    #contador {
+      font-size: 22px;
+      font-weight: bold;
+      background: rgba(255 255 255 / 0.25);
+      padding: 10px 25px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      user-select: none;
+      color: white;
+      box-shadow: 0 0 12px rgba(255, 105, 180, 0.6);
+    }
+
+    /* Cartinha surpresa */
+    #carta {
+      background-color: white;
+      color: #ff1493;
+      padding: 30px;
+      border-radius: 20px;
+      font-size: 24px;
+      max-width: 90%;
+      margin: 40px auto 0;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+      transform: scale(0);
+      transition: transform 0.5s ease;
+      user-select: none;
+    }
+
+    #carta.ativa {
+      transform: scale(1);
+    }
+
+    /* Corações caindo */
+    .heart {
+      position: fixed;
+      top: -60px;
+      color: #ff4da6;
+      font-size: 40px;
+      cursor: pointer;
+      animation: fall 4s linear forwards;
+      user-select: none;
+      filter: drop-shadow(0 0 3px #ff66b2);
+      z-index: 9999;
+      pointer-events: auto;
+    }
+
+    @keyframes fall {
+      0% { top: -60px; opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 600px) {
+      #container {
+        padding: 20px 15px;
+      }
+      #mensagemInicial {
+        font-size: 20px;
+        margin-bottom: 25px;
+      }
+      #startButton {
+        font-size: 20px;
+        padding: 15px 40px;
+      }
+      #instrucoes {
+        font-size: 18px;
+        padding: 15px;
+      }
+      #contador {
+        font-size: 18px;
+        padding: 8px 20px;
+      }
+      #carta {
+        font-size: 20px;
+        padding: 20px;
+        margin-top: 30px;
+      }
+      .heart {
+        font-size: 30px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -17,14 +172,62 @@
     </div>
 
     <button id="startButton">Começar</button>
-  </div>
 
-  <div id="instrucoes">Clique em 15 corações que caem na tela para desbloquear uma surpresa especial! 💘</div>
-  <div id="contador">Corações: 0</div>
-  <div id="carta">🎉 Parabéns por completar a meta! 🎂<br><br> Que você comemore seus <strong>16 anos</strong> com muita alegria, sorrisos e amor!<br>Você é muito especial! 💌<br><br>Beijos do João! 💕</div>
+    <div id="instrucoes">Clique em 15 corações que caem na tela para desbloquear uma surpresa especial! 💘</div>
+    <div id="contador">Corações: 0</div>
+    <div id="carta">🎉 Parabéns por completar a meta! 🎂<br><br> Que você comemore seus <strong>16 anos</strong> com muita alegria, sorrisos e amor!<br>Você é muito especial! 💌<br><br>Beijos do João! 💕</div>
+  </div>
 
   <audio id="bgMusic" src="https://raw.githubusercontent.com/JoaoLucas870/aniversario-marilia/main/perfect%20x%20line%20without%20a%20hook.mp3" loop></audio>
 
-  <script src="js/script.js"></script>
+  <script>
+    const startButton = document.getElementById("startButton");
+    const bgMusic = document.getElementById("bgMusic");
+    const mensagemInicial = document.getElementById("mensagemInicial");
+    const instrucoes = document.getElementById("instrucoes");
+    const contador = document.getElementById("contador");
+    const carta = document.getElementById("carta");
+
+    let cliqueCoracoes = 0;
+    let intervaloCorações;
+
+    function criarCoracao() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = `${40 + Math.random() * 20}px`;
+      document.body.appendChild(heart);
+
+      heart.addEventListener("click", () => {
+        cliqueCoracoes++;
+        contador.textContent = "Corações: " + cliqueCoracoes;
+        heart.remove();
+
+        if (cliqueCoracoes === 15) {
+          carta.classList.add("ativa");
+          clearInterval(intervaloCorações);
+        }
+      });
+
+      setTimeout(() => {
+        if (heart.parentNode) heart.remove();
+      }, 4000);
+    }
+
+    startButton.addEventListener("click", () => {
+      bgMusic.play().catch(() => alert("Clique novamente para ativar o som 😅"));
+      mensagemInicial.style.display = "none";
+      startButton.style.display = "none";
+      instrucoes.style.display = "block";
+      contador.style.display = "block";
+      carta.classList.remove("ativa");
+      cliqueCoracoes = 0;
+      contador.textContent = "Corações: 0";
+
+      intervaloCorações = setInterval(criarCoracao, 300);
+    });
+  </script>
+
 </body>
 </html>
