@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chuva de Corações</title>
+  <style>
+    body {
+      background-color: #000;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    #startButton {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px 40px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 50px;
+      cursor: pointer;
+      animation: fall 4s linear forwards;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -60px;
+        opacity: 1;
+      }
+      100% {
+        top: 100vh;
+        opacity: 0;
+      }
+    }
+
+    #contador {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      font-size: 22px;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      border-radius: 8px;
+      z-index: 101;
+    }
+
+    #carta {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background-color: white;
+      color: black;
+      padding: 30px;
+      border-radius: 20px;
+      font-size: 24px;
+      max-width: 90%;
+      z-index: 200;
+      transition: transform 0.5s ease;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+
+    #carta.ativa {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  </style>
+</head>
+<body>
+  <button id="startButton">Começar</button>
+  <div id="contador">Corações: 0</div>
+  <div id="carta">🎉 Surpresa! Você clicou em 10 corações! 💌</div>
+  <audio id="bgMusic" src="https://raw.githubusercontent.com/JoaoLucas870/aniversario-marilia/main/perfect-x-line-without-a-hook.mp3"></audio>
+
+  <script>
+    const startButton = document.getElementById("startButton");
+    const bgMusic = document.getElementById("bgMusic");
+    const contador = document.getElementById("contador");
+    const carta = document.getElementById("carta");
+    let cliqueCoracoes = 0;
+
+    function criarCoracao() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = `${40 + Math.random() * 20}px`;
+      document.body.appendChild(heart);
+
+      heart.addEventListener("click", () => {
+        cliqueCoracoes++;
+        contador.textContent = "Corações: " + cliqueCoracoes;
+
+        heart.remove();
+
+        if (cliqueCoracoes === 10) {
+          carta.classList.add("ativa");
+        }
+      });
+
+      setTimeout(() => heart.remove(), 4000);
+    }
+
+    startButton.addEventListener("click", () => {
+      bgMusic.play();
+      startButton.style.display = "none";
+      setInterval(criarCoracao, 300);
+    });
+  </script>
+</body>
+</html>
