@@ -3,58 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chuva de Corações</title>
+  <title>Feliz Aniversário, Marília!</title>
   <style>
     body {
-      background-color: #000;
-      overflow: hidden;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ff1493, #db7093);
+      background-size: 400% 400%;
+      animation: bgAnimation 15s ease infinite;
       color: white;
       text-align: center;
     }
 
+    @keyframes bgAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #mensagemInicial {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 90%;
+      font-size: 28px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+      text-shadow: 1px 1px 3px #000;
+      z-index: 100;
+    }
+
     #startButton {
       position: absolute;
-      top: 50%;
+      top: 60%;
       left: 50%;
       transform: translate(-50%, -50%);
       padding: 20px 40px;
-      font-size: 20px;
+      font-size: 24px;
       cursor: pointer;
-      z-index: 100;
+      z-index: 101;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    #startButton:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
 
     .heart {
       position: absolute;
-      color: red;
-      font-size: 50px;
+      color: #ff4da6;
+      font-size: 40px;
       cursor: pointer;
       animation: fall 4s linear forwards;
       user-select: none;
     }
 
     @keyframes fall {
-      0% {
-        top: -60px;
-        opacity: 1;
-      }
-      100% {
-        top: 100vh;
-        opacity: 0;
-      }
+      0% { top: -60px; opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
     }
 
     #contador {
       position: fixed;
-      top: 10px;
-      left: 10px;
+      top: 15px;
+      left: 15px;
       font-size: 22px;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 10px;
-      border-radius: 8px;
-      z-index: 101;
+      background-color: rgba(255, 255, 255, 0.25);
+      padding: 10px 20px;
+      border-radius: 10px;
+      z-index: 200;
+      color: #fff;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+    }
+
+    #instrucoes {
+      display: none;
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.15);
+      padding: 20px;
+      border-radius: 15px;
+      font-size: 22px;
+      max-width: 90%;
+      z-index: 100;
+      color: #fff;
+      text-shadow: 1px 1px 3px #000;
     }
 
     #carta {
@@ -63,14 +109,14 @@
       left: 50%;
       transform: translate(-50%, -50%) scale(0);
       background-color: white;
-      color: black;
+      color: #ff1493;
       padding: 30px;
       border-radius: 20px;
       font-size: 24px;
       max-width: 90%;
-      z-index: 200;
+      z-index: 300;
       transition: transform 0.5s ease;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
     }
 
     #carta.ativa {
@@ -79,16 +125,30 @@
   </style>
 </head>
 <body>
+
+  <div id="mensagemInicial">
+    🎉 <strong>Feliz Aniversário, Marília!</strong> 🎉<br><br>
+    Que neste dia tão especial, você sinta o quanto é amada, querida e iluminada. 💖<br>
+    Que cada batida do seu coração transborde de alegria, saúde e amor! 💕<br>
+    Hoje celebramos não só mais um ano seu, mas tudo de maravilhoso que você representa! 🌟
+  </div>
+
   <button id="startButton">Começar</button>
+
+  <div id="instrucoes">Clique em 15 corações que caem na tela para desbloquear uma surpresa especial! 💘</div>
   <div id="contador">Corações: 0</div>
-  <div id="carta">🎉 Surpresa! Você clicou em 10 corações! 💌</div>
-  <audio id="bgMusic" src="https://raw.githubusercontent.com/JoaoLucas870/aniversario-marilia/main/perfect x line without a hook.mp3"></audio>
+  <div id="carta">🎉 Parabéns por completar a meta! 🎂<br><br> Que você comemore seus <strong>16 anos</strong> com muita alegria, sorrisos e amor!<br>Você é muito especial! 💌<br><br>Beijos do João! 💕</div>
+
+  <audio id="bgMusic" src="https://raw.githubusercontent.com/JoaoLucas870/aniversario-marilia/main/perfect%20x%20line%20without%20a%20hook.mp3" loop></audio>
 
   <script>
     const startButton = document.getElementById("startButton");
     const bgMusic = document.getElementById("bgMusic");
+    const mensagemInicial = document.getElementById("mensagemInicial");
+    const instrucoes = document.getElementById("instrucoes");
     const contador = document.getElementById("contador");
     const carta = document.getElementById("carta");
+
     let cliqueCoracoes = 0;
 
     function criarCoracao() {
@@ -102,10 +162,9 @@
       heart.addEventListener("click", () => {
         cliqueCoracoes++;
         contador.textContent = "Corações: " + cliqueCoracoes;
-
         heart.remove();
 
-        if (cliqueCoracoes === 10) {
+        if (cliqueCoracoes === 15) {
           carta.classList.add("ativa");
         }
       });
@@ -114,10 +173,13 @@
     }
 
     startButton.addEventListener("click", () => {
-      bgMusic.play();
+      bgMusic.play().catch(() => alert("Clique novamente para ativar o som 😅"));
+      mensagemInicial.style.display = "none";
       startButton.style.display = "none";
+      instrucoes.style.display = "block";
       setInterval(criarCoracao, 300);
     });
   </script>
 </body>
 </html>
+
