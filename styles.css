@@ -32,8 +32,8 @@ body {
 /* Mensagem inicial */
 #mensagemInicial {
   position: static;
-  max-width: 600px;
-  font-size: 28px;
+  max-width: 400px;
+  font-size: 22px;
   background-color: rgba(255, 255, 255, 0.15);
   border-radius: 20px;
   box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
@@ -87,7 +87,7 @@ body {
   padding: 10px 20px;
   border-radius: 10px;
   z-index: 200;
-  color: #fff;
+  color: #000000;
   font-weight: bold;
   box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
   user-select: none;
