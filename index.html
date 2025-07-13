@@ -2,9 +2,10 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Feliz Aniversário, Marília!</title>
   <style>
+    /* Fundo animado com degradê rosa */
     body {
       margin: 0;
       padding: 0;
@@ -23,14 +24,16 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Mensagem inicial */
     #mensagemInicial {
       position: absolute;
-      top: 20%;
+      top: 18%;
       left: 50%;
       transform: translateX(-50%);
       max-width: 90%;
       font-size: 28px;
       padding: 20px;
+      padding-bottom: 110px; /* espaço para o botão */
       background-color: rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
@@ -38,27 +41,30 @@
       z-index: 100;
     }
 
+    /* Botão começar */
     #startButton {
       position: absolute;
-      top: 60%;
+      top: 70%;
       left: 50%;
       transform: translate(-50%, -50%);
       padding: 20px 40px;
       font-size: 24px;
       cursor: pointer;
       z-index: 101;
-      background-color: #ff69b4;
+      background: linear-gradient(45deg, #ff69b4, #ff1493);
       color: white;
       border: none;
       border-radius: 40px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255, 20, 147, 0.7);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     #startButton:hover {
       transform: translate(-50%, -50%) scale(1.05);
+      box-shadow: 0 8px 20px rgba(255, 20, 147, 0.9);
     }
 
+    /* Corações caindo */
     .heart {
       position: absolute;
       color: #ff4da6;
@@ -66,6 +72,7 @@
       cursor: pointer;
       animation: fall 4s linear forwards;
       user-select: none;
+      filter: drop-shadow(0 0 3px #ff66b2);
     }
 
     @keyframes fall {
@@ -73,6 +80,7 @@
       100% { top: 100vh; opacity: 0; }
     }
 
+    /* Contador */
     #contador {
       position: fixed;
       top: 15px;
@@ -85,8 +93,10 @@
       color: #fff;
       font-weight: bold;
       box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+      user-select: none;
     }
 
+    /* Instruções após iniciar */
     #instrucoes {
       display: none;
       position: absolute;
@@ -101,8 +111,10 @@
       z-index: 100;
       color: #fff;
       text-shadow: 1px 1px 3px #000;
+      user-select: none;
     }
 
+    /* Cartinha surpresa */
     #carta {
       position: absolute;
       top: 50%;
@@ -117,10 +129,43 @@
       z-index: 300;
       transition: transform 0.5s ease;
       box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+      user-select: none;
     }
 
     #carta.ativa {
       transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 600px) {
+      #mensagemInicial {
+        font-size: 20px;
+        padding-bottom: 130px;
+      }
+
+      #startButton {
+        font-size: 20px;
+        padding: 15px 30px;
+        top: 75%;
+      }
+
+      #instrucoes {
+        font-size: 18px;
+      }
+
+      #contador {
+        font-size: 18px;
+        padding: 8px 15px;
+      }
+
+      #carta {
+        font-size: 20px;
+        padding: 20px;
+      }
+
+      .heart {
+        font-size: 30px;
+      }
     }
   </style>
 </head>
@@ -182,4 +227,3 @@
   </script>
 </body>
 </html>
-
